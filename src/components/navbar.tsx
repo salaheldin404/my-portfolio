@@ -16,6 +16,7 @@ const Links = [
   { name: "Contact", href: "#contact" },
 ]
 const SCROLL_THRESHOLD = 20
+const HEADER_HEIGHT = 80
 const SECTIONS = ["home", "work", "skills", "about", "contact"] as const
 
 const smoothScrollTo = (lenis: Lenis | null, target: number | HTMLElement, offset = 0) => {
@@ -64,7 +65,7 @@ const Navbar = () => {
         const visible = entries
           .filter((e) => e.isIntersecting)
           .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0]
-        if (visible){
+        if (visible) {
           setActiveSection(visible.target.id)
         }
       },
@@ -100,30 +101,30 @@ const Navbar = () => {
 
     const element = document.getElementById(targetId)
     if (element) {
-      requestAnimationFrame(() => smoothScrollTo(lenis, element, -80))
+      requestAnimationFrame(() => smoothScrollTo(lenis, element, -HEADER_HEIGHT))
       setActiveSection(targetId)
     }
   }
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 w-full pt-4 px-4 md:px-8 lg:px-16 xl:px-32 pointer-events-none">
+    <header className={cn("fixed top-0 left-0 right-0 z-50 w-full h-[80px]  flex items-center px-4 md:px-8 lg:px-16 xl:px-32 pointer-events-none transition-all duration-300 ease-in-out", isScrolled ? "mt-4" : '')}>
       <nav
         className={cn(
-          "mx-auto max-w-7xl w-full relative pointer-events-auto transition-all duration-300 ease-in-out",
+          "mx-auto max-w-7xl w-full px-4 h-full relative pointer-events-auto transition-all duration-300 ease-in-out",
           isScrolled
-            ? "bg-background/80 backdrop-blur-md border border-border/40 shadow-[0_8px_30px_rgba(0,0,0,0.06)] rounded-full px-6 py-2"
-            : "bg-background/20 backdrop-blur-sm border border-border/10 rounded-[24px] px-4 py-3"
+            ? "bg-background/80 backdrop-blur-md border border-border/40 shadow-[0_8px_30px_rgba(0,0,0,0.06)] rounded-full"
+            : "bg-background/20 backdrop-blur-sm border border-border/10 rounded-[24px]"
         )}
       >
-        <div className="flex items-center justify-between h-14">
+        <div className="flex items-center justify-between h-full">
           {/* Logo */}
           <a
             href="#"
             onClick={(e) => handleLinkClick(e, "#")}
-            className="flex items-center transition-transform hover:scale-[1.02] active:scale-[0.98]"
+            className="flex items-center shrink-0 transition-transform hover:scale-[1.04] active:scale-[0.98]"
             aria-label="Back to top"
           >
-            <div className="relative w-25 h-25 ">
+            <div className="relative w-19 h-19 md:w-24 md:h-24">
               <Image
                 src="/logo.png"
                 alt="Logo"
