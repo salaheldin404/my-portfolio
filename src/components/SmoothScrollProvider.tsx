@@ -14,6 +14,7 @@ export const SmoothScrollProvider = ({ children }: { children: ReactNode }) => {
       duration: 1.2,
       smoothWheel: true,
       touchMultiplier: 2,
+      prevent: (node) => !!node.closest("[data-scroll-container]"),
     })
 
     function raf(time: number) {
