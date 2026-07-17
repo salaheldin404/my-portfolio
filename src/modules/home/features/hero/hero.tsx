@@ -6,7 +6,7 @@ import { HeroContent } from "./components/hero-content"
 import { HeroActions } from "./components/hero-actions"
 import { HeroTechStack } from "./components/hero-tech-stack"
 import { HeroImage } from "./components/hero-image"
-import { HeroBackground } from "./components/hero-background"
+import AmbientGlow from "@/components/ambient-glow"
 
 const containerVariants: Variants = {
   hidden: {},
@@ -68,7 +68,7 @@ const HeroSection = () => {
       id="home"
       className="relative z-10 min-h-[calc(100vh-var(--spacing-header))] flex items-center py-12 md:py-20 xl:py-28 scroll-mt-header overflow-hidden"
     >
-      <HeroBackground />
+      <AmbientGlow />
 
       <div className="main-container w-full grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
         {/* Left Column: Text & CTAs */}
