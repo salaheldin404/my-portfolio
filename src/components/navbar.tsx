@@ -12,12 +12,13 @@ import { useLenis } from "./SmoothScrollProvider"
 const Links = [
   { name: "Work", href: "#work" },
   { name: "Skills", href: "#skills" },
+  { name: "Certificates", href: "#certificates" },
   { name: "About", href: "#about" },
   { name: "Contact", href: "#contact" },
 ]
 const SCROLL_THRESHOLD = 20
 const HEADER_HEIGHT = 80
-const SECTIONS = ["home", "work", "skills", "about", "contact"] as const
+const SECTIONS = ["home", "work", "skills","certificates", "about", "contact"] as const
 
 const smoothScrollTo = (lenis: Lenis | null, target: number | HTMLElement, offset = 0) => {
   if (lenis) {
@@ -131,6 +132,7 @@ const Navbar = () => {
                 fill
                 priority
                 className="object-contain"
+                sizes="( max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
               />
             </div>
           </a>
@@ -167,12 +169,12 @@ const Navbar = () => {
               })}
             </ul>
 
-            <div className="ml-4 pl-4 border-l border-border/40 flex items-center gap-4">
+            <div className="ml-2 pl-2 lg:ml-4 lg:pl-4 border-l border-border/40 flex items-center gap-2 lg:gap-4">
               <ThemeSwitcher />
               <a
                 href="#contact"
                 onClick={(e) => handleLinkClick(e, "#contact")}
-                className="inline-flex h-9 items-center justify-center rounded-full bg-foreground px-5 text-xs font-bold uppercase tracking-wider text-background transition-all hover:bg-foreground/90 hover:scale-[1.02] active:scale-[0.98]"
+                className="inline-flex h-9 items-center justify-center rounded-full bg-foreground px-2 lg:px-5 text-[10px] lg:text-xs font-bold uppercase tracking-wider text-background transition-all hover:bg-foreground/90 hover:scale-[1.02] active:scale-[0.98]"
               >
                 Hire Me
               </a>
