@@ -6,35 +6,11 @@ import { HeroContent } from "./components/hero-content"
 import { HeroActions } from "./components/hero-actions"
 import { HeroTechStack } from "./components/hero-tech-stack"
 import { HeroImage } from "./components/hero-image"
-import AmbientGlow from "@/components/ambient-glow"
+import AmbientGlow from "@/modules/home/components/ambient-glow"
+import { createFadeUpVariants, createStaggerVariants, reducedMotionVariants } from "@/modules/home/utils"
 
-const containerVariants: Variants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.09,
-      delayChildren: 0.05,
-    },
-  },
-}
-
-const fadeUpVariants: Variants = {
-  hidden: { opacity: 0, y: 18 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.7, ease: "easeOut" },
-  },
-}
-
-const reducedFadeUpVariants: Variants = {
-  hidden: { opacity: 0, y: 0 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0 },
-  },
-}
+const containerVariants = createStaggerVariants({ staggerChildren: 0.3, delayChildren: 0.3 })
+const fadeUpVariants = createFadeUpVariants(18)
 
 const imageVariants: Variants = {
   hidden: { opacity: 0, scale: 0.96, y: 12 },
@@ -60,7 +36,7 @@ const reducedImageVariants: Variants = {
 const HeroSection = () => {
   const shouldReduceMotion = useReducedMotion()
 
-  const textVariants = shouldReduceMotion ? reducedFadeUpVariants : fadeUpVariants
+  const textVariants = shouldReduceMotion ? reducedMotionVariants : fadeUpVariants
   const photoVariants = shouldReduceMotion ? reducedImageVariants : imageVariants
 
   return (
@@ -98,11 +74,12 @@ const HeroSection = () => {
           </motion.div>
 
           <motion.div
-            variants={textVariants}
             className="w-full"
+            variants={textVariants}
           >
-            <HeroTechStack />
+            <HeroTechStack shouldReduceMotion={shouldReduceMotion} />
           </motion.div>
+
         </motion.div>
 
         {/* Right Column: Photograph */}
