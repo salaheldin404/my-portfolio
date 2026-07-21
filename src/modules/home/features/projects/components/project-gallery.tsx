@@ -111,7 +111,6 @@ export const ProjectGallery = ({ projectScreens, projectName }: ProjectGalleryPr
               fill
               sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
               className="object-cover transition-transform duration-500 ease-out group-hover/grid-item:scale-105 p-0.5"
-              unoptimized
             />
 
             <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover/grid-item:opacity-100 transition-all duration-200 flex flex-col justify-end p-3">
@@ -260,7 +259,6 @@ export const ProjectGallery = ({ projectScreens, projectName }: ProjectGalleryPr
                       else setScale(2)
                     }}
                     draggable={false}
-                    unoptimized
                   />
                 </motion.div>
               </div>
@@ -286,7 +284,6 @@ export const ProjectGallery = ({ projectScreens, projectName }: ProjectGalleryPr
                         fill
                         sizes="80px"
                         className="object-cover"
-                        unoptimized
                       />
                     </button>
                   ))}

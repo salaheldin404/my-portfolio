@@ -13,6 +13,7 @@ export const HeroImage = () => {
             src="/salah.jpeg"
             alt="Salah Eldin"
             fill
+            priority
 
             className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
             sizes="(max-w-768px) 256px, (max-w-1024px) 288px, 320px"
