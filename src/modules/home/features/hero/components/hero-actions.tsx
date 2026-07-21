@@ -1,10 +1,20 @@
 import { ArrowUpRight, Download } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { smoothScrollTo } from "@/lib/utils"
+import { useLenis } from "@/components/SmoothScrollProvider"
 
 export const HeroActions = () => {
+  const lenis = useLenis()
+  
   const handleScrollToProjects = (e: React.MouseEvent) => {
     e.preventDefault()
-    document.getElementById("work")?.scrollIntoView({ behavior: "smooth" })
+
+    document.body.style.overflow = "unset"
+
+    const element = document.getElementById("work")
+    if (element) {
+      requestAnimationFrame(() => smoothScrollTo(lenis, element, -80))
+    }
   }
 
   return (

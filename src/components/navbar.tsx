@@ -4,9 +4,8 @@ import { useState, useEffect } from "react"
 import Image from "next/image"
 import { Menu, X } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
-import { cn } from "@/lib/utils"
+import { cn, smoothScrollTo } from "@/lib/utils"
 import ThemeSwitcher from "./theme-switcher"
-import Lenis from "lenis"
 import { useLenis } from "./SmoothScrollProvider"
 
 const Links = [
@@ -17,20 +16,8 @@ const Links = [
   { name: "Contact", href: "#contact" },
 ]
 const SCROLL_THRESHOLD = 20
-const HEADER_HEIGHT = 80
 const SECTIONS = ["home", "work", "skills","certificates", "about", "contact"] as const
 
-const smoothScrollTo = (lenis: Lenis | null, target: number | HTMLElement, offset = 0) => {
-  if (lenis) {
-    lenis.scrollTo(target, offset ? { offset } : undefined)
-    return
-  }
-  const top =
-    typeof target === "number"
-      ? target
-      : target.getBoundingClientRect().top + window.scrollY + offset
-  window.scrollTo({ top, behavior: "smooth" })
-}
 
 const Navbar = () => {
   const lenis = useLenis()
@@ -102,7 +89,7 @@ const Navbar = () => {
 
     const element = document.getElementById(targetId)
     if (element) {
-      requestAnimationFrame(() => smoothScrollTo(lenis, element, -HEADER_HEIGHT))
+      requestAnimationFrame(() => smoothScrollTo(lenis, element, -80))
       setActiveSection(targetId)
     }
   }
